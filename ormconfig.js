@@ -6,6 +6,9 @@ module.exports = {
   database: process.env.NODE_ENV !== 'production' ? process.env.TYPEORM_DATABASE_DEV : process.env.TYPEORM_DATABASE_PROD,
   migrationsRun: process.env.NODE_ENV !== 'production' ? true : false,
   dropSchema: process.env.NODE_ENV !== 'production' ? true : false,
+  options: process.env.NODE_ENV !== 'production' ? undefined : {
+    encrypt: false
+  },
   entities: [
     `${process.env.NODE_ENV !== 'production' 
       ? process.env.TYPEORM_DIRECTORY_AUTH_DEV 
