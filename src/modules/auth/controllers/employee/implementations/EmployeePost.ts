@@ -22,7 +22,7 @@ export class EmployeePost implements EmployeePostProtocols {
 
       if (
         Number.isNaN(Number(employeeCode)) ||
-        !Number.isInteger(employeeCode)
+        !Number.isInteger(Number(employeeCode))
       ) throw new Error('Invalid code')
 
       const employee = await instances.employee.find().byCode(parseInt(employeeCode))

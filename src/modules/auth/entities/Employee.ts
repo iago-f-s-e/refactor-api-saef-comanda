@@ -3,7 +3,7 @@ import { Password } from './Password'
 import { Role } from './Role'
 
 @Index('PK__Funcionario', ['employeeCode'], { unique: true })
-@Entity('Funcionario', { schema: 'public' })
+@Entity('Funcionario', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
 export class Employee {
   @PrimaryColumn({ type: 'int', name: 'cdPessoa' })
   employeeCode!: number
