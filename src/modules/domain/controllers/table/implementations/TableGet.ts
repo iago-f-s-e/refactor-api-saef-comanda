@@ -9,7 +9,7 @@ export class TableGet implements TableGetProtocols {
   public async requestToList (request: Request, response: Response): Promise<Response> {
     const { instances } = request
 
-    const tables = tableMapping().tables(await instances.table.find().execute())
+    const tables = tableMapping().tables(await instances.table.find().tablesWithBudgets())
 
     return response.status(200).json({ results: tables })
   }
