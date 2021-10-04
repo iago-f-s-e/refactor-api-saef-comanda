@@ -26,8 +26,7 @@ module.exports = {
   moduleNameMapper: {
     '@src/(.*)': '<rootDir>/src/$1',
     '@test/(.*)': '<rootDir>/test/$1',
-    '@admin/(.*)': '<rootDir>/src/modules/domain/admin/$1',
-    '@helpers/(.*)': '<rootDir>/src/modules/helpers/$1'
+    '@auth/(.*)': '<rootDir>/src/modules/auth/$1'
   },
   preset: 'ts-jest',
   rootDir: root,

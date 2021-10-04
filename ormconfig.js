@@ -1,14 +1,11 @@
 module.exports = {
-  type: process.env.TYPEORM_ENGINE,
-  host: process.env.TYPEORM_HOST,
-  username: process.env.TYPEORM_USERNAME,
-  password: process.env.TYPEORM_PASSWORD,
-  database:process.env.TYPEORM_DATABASE,
+  type: process.env.NODE_ENV !== 'production' ? process.env.TYPEORM_ENGINE_DEV : process.env.TYPEORM_ENGINE_PROD,
+  host: process.env.NODE_ENV !== 'production' ? process.env.TYPEORM_HOST_DEV : process.env.TYPEORM_HOST_PROD,
+  username: process.env.NODE_ENV !== 'production' ? process.env.TYPEORM_USERNAME_DEV : process.env.TYPEORM_USERNAME_PROD,
+  password: process.env.NODE_ENV !== 'production' ? process.env.TYPEORM_PASSWORD_DEV : process.env.TYPEORM_PASSWORD_PROD,
+  database: process.env.NODE_ENV !== 'production' ? process.env.TYPEORM_DATABASE_DEV : process.env.TYPEORM_DATABASE_PROD,
   migrationsRun: process.env.NODE_ENV !== 'production' ? true : false,
   dropSchema: process.env.NODE_ENV !== 'production' ? true : false,
-  ssl: {
-    rejectUnauthorized: false
-  },
   entities: [
     `${process.env.NODE_ENV !== 'production' 
       ? process.env.TYPEORM_DIRECTORY_AUTH_DEV 

@@ -1,6 +1,5 @@
 tsconfig.tsbuildinfo
 node_modules
-.env
 dist
 coverage
 .vscode

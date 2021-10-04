@@ -14,6 +14,7 @@ module.exports = {
     ['module-resolver', {
       alias: {
         '@src': './src',
+        '@auth': './src/modules/auth'
       }
     }],
     ['@babel/plugin-proposal-decorators', { 'legacy': true }],

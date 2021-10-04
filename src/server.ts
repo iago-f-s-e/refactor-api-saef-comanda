@@ -12,6 +12,9 @@ import express, { Application } from 'express'
 import swaggerUi from 'swagger-ui-express'
 import swaggerDocs from './docs/swagger.json'
 
+import { beginInstances } from './middlewares'
+import { DefaultController, MappingControllers } from './controllers'
+
 export class Server extends SetupServer {
   constructor () {
     super()
@@ -31,10 +34,14 @@ export class Server extends SetupServer {
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
     this.app.use(`/api/${process.env.API_VERSION}/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+    this.app.use(beginInstances)
   }
 
   private setupControllers (): void {
-    this.addControllers([])
+    this.addControllers([
+      new DefaultController(),
+      new MappingControllers()
+    ])
   }
 
   public getApp (): Application {
