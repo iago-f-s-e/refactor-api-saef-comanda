@@ -6,16 +6,11 @@ export class FindEmployee implements FindEmployeeProtocols {
   constructor (private readonly employeeHandlers: EmployeeHandlers) {}
 
   public async byCode (employeeCode: number): Promise<Employee> {
-    const employee = await this.employeeHandlers.repository.findOne({
-      where: { employeeCode },
-      join: {
-        alias: 'Employee',
-        innerJoinAndSelect: {
-          passwords: 'Employee.passwords',
-          role: 'Employee.role'
-        }
-      }
-    })
+    const employee = await this.employeeHandlers.queryBuilder
+      .where('Employee.employeeCode = :employeeCode', { employeeCode })
+      .innerJoinAndSelect('Employee.role', 'role')
+      .innerJoinAndSelect('Employee.passwords', 'passwords')
+      .getOne()
 
     if (!employee) throw new Error('Employee not found')
 
