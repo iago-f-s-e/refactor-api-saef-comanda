@@ -1,0 +1,11 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API Saef Comanda",
+    "description": "...",
+    "version": "0.0.1"
+  },
+  "tags": [],
+  "paths": {},
+  "components": {}
+}
