@@ -3,10 +3,10 @@ import { employeeErrors } from '@src/modules/auth/errors'
 import { employeeMapping } from '@src/modules/auth/mapping/employee/implementations'
 import { comparePassword } from '@src/modules/auth/utils'
 import { Request, Response } from 'express'
-import { EmployeePostProtocols } from '../contracts'
+import { EmployeeGetProtocols } from '../contracts'
 
 @Controller('')
-export class EmployeePost implements EmployeePostProtocols {
+export class EmployeeGet implements EmployeeGetProtocols {
   @Get('login')
   public async requestToLogin (request: Request, response: Response): Promise<Response> {
     const { codigo: employeeCode, senha: employeePassword } = request.query
