@@ -1,8 +1,8 @@
 import { ChildControllers, Controller } from '@overnightjs/core'
-import { EmployeePost } from './EmployeePost'
+import { EmployeeGet } from './EmployeeGet'
 
 @Controller('funcionarios')
 @ChildControllers([
-  new EmployeePost()
+  new EmployeeGet()
 ])
 export class EmployeeController {}

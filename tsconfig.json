@@ -36,7 +36,8 @@
     "paths": {
       "@src/*": ["./src/*"],
       "@test/*": ["./test/*"],
-      "@auth/*": ["./src/modules/auth/*"]
+      "@auth/*": ["./src/modules/auth/*"],
+      "@domain/*": ["./src/modules/domain/*"]
     }
   },
   "include": [
