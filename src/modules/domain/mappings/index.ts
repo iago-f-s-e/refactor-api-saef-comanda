@@ -1,2 +1,3 @@
-export * from './table'
 export * from './order'
+export * from './product'
+export * from './table'

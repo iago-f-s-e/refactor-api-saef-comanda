@@ -1,5 +1,5 @@
-import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from 'typeorm'
-import { Table, Order } from '.'
+import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, OneToMany, OneToOne, PrimaryColumn } from 'typeorm'
+import { Table, Order, BudgetProduct } from '.'
 
 @Index('IX_Orcamento_cdCliente', ['client'], {})
 @Index('IX_Orcamento_cdPessoa', ['personCode'], {})
@@ -66,4 +66,7 @@ export class Budget {
   @ManyToOne(() => Table, table => table.budgets, { onUpdate: 'CASCADE' })
   @JoinColumn([{ name: 'cdMesa', referencedColumnName: 'tableCode' }])
   table!: Table
+
+  @OneToMany(() => BudgetProduct, products => products.budget)
+  products!: BudgetProduct[];
 }

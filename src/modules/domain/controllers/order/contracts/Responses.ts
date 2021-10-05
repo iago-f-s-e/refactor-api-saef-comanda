@@ -1,3 +1,5 @@
+import { MappedBudgetProduct } from '@domain/controllers'
+
 export interface MappedOrder {
   codigo: number
   numero: number | string
@@ -7,4 +9,5 @@ export interface MappedOrder {
   valor: number
   desconto: number
   emissão: string
+  produtos: MappedBudgetProduct[]
 }

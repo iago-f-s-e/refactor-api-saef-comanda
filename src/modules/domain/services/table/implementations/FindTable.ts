@@ -19,6 +19,8 @@ export class FindTable implements FindTableProtocols {
     const tables = await this.tableHandles.queryBuilder
       .leftJoinAndSelect('Table.budgets', 'budgets')
       .leftJoinAndSelect('budgets.order', 'order')
+      .leftJoinAndSelect('budgets.products', 'budgetProducts')
+      .leftJoinAndSelect('budgetProducts.product', 'product')
       .getMany()
 
     const tablesFiltered = tables.map((table): Table => {

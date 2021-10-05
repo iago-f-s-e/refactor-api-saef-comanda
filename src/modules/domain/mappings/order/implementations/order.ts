@@ -1,5 +1,6 @@
 import { Budget } from '@domain/entities'
 import { MappedOrder } from '@domain/controllers'
+import { productMapping } from '@domain/mappings'
 
 export function order (entity: Budget): MappedOrder {
   return {
@@ -10,7 +11,8 @@ export function order (entity: Budget): MappedOrder {
     valor: entity.value,
     desconto: entity.discount,
     cliente: getClient(entity.client),
-    garçom: getEmployee(entity.employeeCode)
+    garçom: getEmployee(entity.employeeCode),
+    produtos: productMapping().budgetProducts(entity.products)
   }
 }
 
