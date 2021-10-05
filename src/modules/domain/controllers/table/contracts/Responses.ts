@@ -1,8 +1,8 @@
-import { Budget } from '@src/modules/domain/entities'
+import { MappedOrder } from '@domain/controllers'
 
 export interface MappedTable {
   numero: number
   status: string
   descrição?: string
-  orcamentos?: Budget[]
+  comandas?: MappedOrder[]
 }
