@@ -1,6 +1,6 @@
 
-import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm'
-import { BudgetProduct } from '.'
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
+import { BudgetProduct, Group } from '.'
 
 @Index('IX_Produto_nmProduto', ['name'], {})
 @Index('PK_Produto', ['productCode'], { unique: true })
@@ -36,5 +36,10 @@ export class Product {
   @Column({ type: 'varchar', name: 'dsCaminho', nullable: true })
   image?: string
 
+  @OneToMany(() => BudgetProduct, budgets => budgets.product)
   budgets!: BudgetProduct[]
+
+  @ManyToOne(() => Group, group => group.products, { onUpdate: 'CASCADE' })
+  @JoinColumn([{ name: 'cdgrupo', referencedColumnName: 'groupCode' }])
+  group!: Group
 }
