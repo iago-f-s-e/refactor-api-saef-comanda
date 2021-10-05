@@ -10,14 +10,15 @@ export class FindTable implements FindTableProtocols {
 
     if (isEmpty) return []
 
-    const budgetsFiltered = budgets.filter(budget => budget.printed === 'N')
+    const openBudget = budgets.filter(budget => budget.printed === 'N' && !budget.order?.finished)
 
-    return budgetsFiltered
+    return openBudget
   }
 
   public async tablesWithBudgets (): Promise<Table[]> {
     const tables = await this.tableHandles.queryBuilder
       .leftJoinAndSelect('Table.budgets', 'budgets')
+      .leftJoinAndSelect('budgets.order', 'order')
       .getMany()
 
     const tablesFiltered = tables.map((table): Table => {

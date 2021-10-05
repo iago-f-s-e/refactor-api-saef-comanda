@@ -1,10 +1,5 @@
-import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from 'typeorm'
-import { Table } from '.'
-
-export interface RegisterOrcamento {
-  mesa: number
-  garçom: number
-}
+import { Column, CreateDateColumn, Entity, Index, JoinColumn, ManyToOne, OneToOne, PrimaryColumn } from 'typeorm'
+import { Table, Order } from '.'
 
 @Index('IX_Orcamento_cdCliente', ['client'], {})
 @Index('IX_Orcamento_cdPessoa', ['personCode'], {})
@@ -64,6 +59,9 @@ export class Budget {
 
   @Column({ type: 'real', name: 'trocoPara', default: 0, nullable: true })
   moneyExchange!: number
+
+  @OneToOne(() => Order, order => order.budget)
+  order!: Order;
 
   @ManyToOne(() => Table, table => table.budgets, { onUpdate: 'CASCADE' })
   @JoinColumn([{ name: 'cdMesa', referencedColumnName: 'tableCode' }])
