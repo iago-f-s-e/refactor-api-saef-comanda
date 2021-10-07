@@ -1,5 +1,6 @@
 export * from './group'
 export * from './order'
 export * from './pizza'
+export * from './pizza_flavors'
 export * from './product'
 export * from './table'
