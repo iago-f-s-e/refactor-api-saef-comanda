@@ -3,3 +3,8 @@ export interface MappedPizza {
   name: string
   slices: number
 }
+
+export interface MappedPizzaFlavors extends Omit<MappedPizza, 'slices'> {
+  valuePerSlice: number
+  image: string
+}
