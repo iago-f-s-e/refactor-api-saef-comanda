@@ -10,5 +10,5 @@ export class Pizza {
   maxSlices!: number;
 
   @Column({ type: 'varchar', name: 'dsDescricao', nullable: true, length: 50 })
-  description?: string;
+  description!: string;
 }
