@@ -28,6 +28,7 @@ module.exports = {
     '@test/(.*)': '<rootDir>/test/$1',
     '@auth/(.*)': '<rootDir>/src/modules/auth/$1',
     '@domain/(.*)': '<rootDir>/src/modules/domain/$1',
+    '@helpers/(.*)': '<rootDir>/src/modules/helpers/$1',
   },
   preset: 'ts-jest',
   rootDir: root,

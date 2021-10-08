@@ -17,6 +17,10 @@ module.exports = {
     `${process.env.NODE_ENV !== 'production' 
       ? process.env.TYPEORM_DIRECTORY_DOMAIN_DEV 
       : process.env.TYPEORM_DIRECTORY_DOMAIN_PROD}`,
+
+    `${process.env.NODE_ENV !== 'production' 
+      ? process.env.TYPEORM_DIRECTORY_HELPERS_DEV 
+      : process.env.TYPEORM_DIRECTORY_HELPERS_PROD}`,
   ],
   migrations: [
     `${process.env.NODE_ENV !== 'production' 

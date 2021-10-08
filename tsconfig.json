@@ -37,7 +37,8 @@
       "@src/*": ["./src/*"],
       "@test/*": ["./test/*"],
       "@auth/*": ["./src/modules/auth/*"],
-      "@domain/*": ["./src/modules/domain/*"]
+      "@domain/*": ["./src/modules/domain/*"],
+      "@helpers/*": ["./src/modules/helpers/*"]
     }
   },
   "include": [
