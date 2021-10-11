@@ -1,6 +1,15 @@
 import { EmployeeServices } from '@auth/services'
-import { TableServices, GroupServices, PizzaServices, PizzaFlavorsServices } from '@domain/services'
-import { ConfigServices } from '@helpers/services'
+import { ConfigServices, OrderProgressServices, SequentialServices } from '@helpers/services'
+import {
+  TableServices,
+  GroupServices,
+  PizzaServices,
+  PizzaFlavorsServices,
+  BudgetServices,
+  BudgetProductServices,
+  PizzaFollowUpServices,
+  OrderServices
+} from '@domain/services'
 
 export interface Instances {
   employee: EmployeeServices
@@ -8,7 +17,13 @@ export interface Instances {
   group: GroupServices
   pizza: PizzaServices
   pizzaFlavors: PizzaFlavorsServices
+  pizzaFollowUp: PizzaFollowUpServices
   table: TableServices
+  budget: BudgetServices
+  budgetProducts: BudgetProductServices
+  order: OrderServices
 
   config: ConfigServices
+  sequential: SequentialServices
+  orderProgress: OrderProgressServices
 }

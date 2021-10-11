@@ -10,7 +10,7 @@ export function product (entity: Product): MappedProduct {
     estoque: entity.stock,
     produtoProprio: getIsOwnProduct(entity.ownProduct),
     pizza: getIsPizza(entity.name, entity.composition),
-    image: getImage(entity.image)
+    imagem: getImage(entity.image)
   }
 }
 

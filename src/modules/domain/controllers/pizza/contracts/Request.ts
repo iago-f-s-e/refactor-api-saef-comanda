@@ -1,10 +1,20 @@
-export interface MappedPizza {
-  code: number
-  name: string
-  slices: number
+interface Size {
+  codigo: number
+  descricao: string
+  fatias: number
 }
 
-export interface MappedPizzaFlavors extends Omit<MappedPizza, 'slices'> {
-  valuePerSlice: number
-  image: string
+export interface FollowUp {
+  codigo: number
+  nome: string
+  preço: number
+  fatias: number
+}
+
+export interface RequestToCreatePizzaOrder {
+  codigo: number
+  preço: number
+  observacao: string
+  tamanho: Size
+  acompanhamentos: FollowUp[]
 }

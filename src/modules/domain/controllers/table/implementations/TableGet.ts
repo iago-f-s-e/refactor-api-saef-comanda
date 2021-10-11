@@ -9,7 +9,16 @@ export class TableGet implements TableGetProtocols {
   public async requestToList (request: Request, response: Response): Promise<Response> {
     const { instances } = request
 
-    const tables = tableMapping().tables(await instances.table.find().tablesWithBudgets())
+    const { closedTables, openedTables } = await instances.table.find().execute()
+
+    for (const tableIndex in closedTables) {
+      const { tableCode } = closedTables[tableIndex]
+      const budgets = await instances.budget.find().byTable(tableCode)
+
+      Object.assign(closedTables[tableIndex], { budgets })
+    }
+
+    const tables = tableMapping().tables([...closedTables, ...openedTables])
 
     return response.status(200).json({ results: tables })
   }

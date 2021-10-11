@@ -60,7 +60,7 @@ export class Budget {
   @Column({ type: 'real', name: 'trocoPara', default: 0, nullable: true })
   moneyExchange!: number
 
-  @OneToOne(() => Order, order => order.budget)
+  @OneToOne(() => Order, order => order.budget, { cascade: true })
   order!: Order;
 
   @ManyToOne(() => Table, table => table.budgets, { onUpdate: 'CASCADE' })
@@ -69,4 +69,28 @@ export class Budget {
 
   @OneToMany(() => BudgetProduct, products => products.budget)
   products!: BudgetProduct[];
+
+  constructor () {
+    this.emission = this.emission || this.getEmission()
+    this.hour = this.hour || this.getHours()
+    this.printed = this.printed || 'N'
+    this.discount = this.discount || 0
+    this.service = this.service || 0
+    this.client = this.client || 1
+    this.flag = this.flag || 'C'
+    this.personCode = this.personCode || 3
+    this.formatting = this.formatting || '0'
+    this.deliveryFee = this.deliveryFee || 0
+    this.orderType = this.orderType || 'M'
+    this.paidOut = this.paidOut || false
+    this.moneyExchange = this.moneyExchange || 0
+  }
+
+  private getEmission (): Date {
+    return new Date(new Date(new Date().setHours(0, 0, 0, 0)).setDate(new Date().getDate() + 1))
+  }
+
+  private getHours (): string {
+    return new Date().toISOString()
+  }
 }

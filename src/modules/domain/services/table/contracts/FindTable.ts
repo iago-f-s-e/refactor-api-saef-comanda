@@ -1,5 +1,6 @@
 import { Table } from '@domain/entities'
 
 export interface FindTableProtocols {
-  tablesWithBudgets: () => Promise<Table[]>
+  execute: () => Promise<{openedTables: Table[], closedTables: Table[]}>
+  byTableCode: (tableCode: number) =>Promise<Table>
 }

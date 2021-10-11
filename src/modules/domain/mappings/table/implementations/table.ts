@@ -18,5 +18,5 @@ export function getStatus (inUse: boolean): 'Livre' | 'Ocupada' {
 }
 
 export function getOrders (entities: Budget[]): MappedOrder[] | undefined {
-  return entities.length ? orderMapping().orders(entities) : undefined
+  return entities?.length ? orderMapping().orders(entities) : undefined
 }

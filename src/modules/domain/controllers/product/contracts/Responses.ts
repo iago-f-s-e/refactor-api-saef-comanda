@@ -6,10 +6,10 @@ export interface MappedProduct {
   estoque: number
   produtoProprio: boolean
   pizza: boolean
-  image: string
+  imagem: string
 }
 
-export interface MappedBudgetProduct extends Omit<MappedProduct, 'image'> {
+export interface MappedBudgetProduct extends Omit<MappedProduct, 'imagem'> {
   ordinal: number
   valor: number,
   quantidade: number
