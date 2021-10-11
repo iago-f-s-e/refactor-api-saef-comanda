@@ -1,6 +1,6 @@
 
 import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm'
-import { BudgetProduct, Group } from '.'
+import { BudgetProduct, Group, PizzaFollowUp } from '.'
 
 @Index('IX_Produto_nmProduto', ['name'], {})
 @Index('PK_Produto', ['productCode'], { unique: true })
@@ -38,6 +38,9 @@ export class Product {
 
   @OneToMany(() => BudgetProduct, budgets => budgets.product)
   budgets!: BudgetProduct[]
+
+  @OneToMany(() => BudgetProduct, budgets => budgets.product)
+  pizzaFollowUp!: PizzaFollowUp[]
 
   @ManyToOne(() => Group, group => group.products, { onUpdate: 'CASCADE' })
   @JoinColumn([{ name: 'cdgrupo', referencedColumnName: 'groupCode' }])

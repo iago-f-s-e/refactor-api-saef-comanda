@@ -19,4 +19,8 @@ export class Order {
   @OneToOne(() => Budget, budget => budget.order, { onDelete: 'CASCADE' })
   @JoinColumn([{ name: 'nrOrcamento', referencedColumnName: 'budgetCode' }])
   budget!: Budget;
+
+  constructor () {
+    this.finished = this.finished || false
+  }
 }

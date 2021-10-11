@@ -1,35 +1,35 @@
 import { TableHandlers } from '@domain/infra'
-import { Budget, Table } from '@domain/entities'
+import { Table } from '@domain/entities'
 import { FindTableProtocols } from '../contracts'
 
 export class FindTable implements FindTableProtocols {
   constructor (private readonly tableHandles: TableHandlers) {}
 
-  private getTableBudgets (budgets: Budget[]): Budget[] {
-    const isEmpty = !budgets.length
+  public async execute (): Promise<{closedTables: Table[], openedTables: Table[]}> {
+    const tables = await this.tableHandles.queryBuilder.getMany()
 
-    if (isEmpty) return []
+    const closedTables: Table[] = []
+    const openedTables: Table[] = []
 
-    const openBudget = budgets.filter(budget => budget.printed === 'N' && !budget.order?.finished)
+    for (const table of tables) {
+      if (!table.inUse) {
+        openedTables.push(table)
+        continue
+      }
 
-    return openBudget
+      closedTables.push(table)
+    }
+
+    return { closedTables, openedTables }
   }
 
-  public async tablesWithBudgets (): Promise<Table[]> {
-    const tables = await this.tableHandles.queryBuilder
-      .leftJoinAndSelect('Table.budgets', 'budgets')
-      .leftJoinAndSelect('budgets.order', 'order')
-      .leftJoinAndSelect('budgets.products', 'budgetProducts')
-      .leftJoinAndSelect('budgetProducts.product', 'product')
-      .getMany()
+  public async byTableCode (tableCode: number): Promise<Table> {
+    const table = await this.tableHandles.queryBuilder
+      .where('Table.tableCode = :tableCode', { tableCode })
+      .getOne()
 
-    const tablesFiltered = tables.map((table): Table => {
-      return {
-        ...table,
-        budgets: this.getTableBudgets(table.budgets)
-      }
-    })
+    if (!table) throw new Error('Table not found')
 
-    return tablesFiltered
+    return table
   }
 }

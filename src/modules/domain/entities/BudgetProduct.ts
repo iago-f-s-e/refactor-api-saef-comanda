@@ -53,4 +53,9 @@ export class BudgetProduct {
   @ManyToOne(() => Product, product => product.budgets, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
   @JoinColumn([{ name: 'cdProduto', referencedColumnName: 'productCode' }])
   product!: Product
+
+  constructor () {
+    this.printed = this.printed || false
+    this.situation = this.situation || ''
+  }
 }
