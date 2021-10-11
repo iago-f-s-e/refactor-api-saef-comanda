@@ -9,3 +9,9 @@ export interface RequestToCreateOrder {
   produtos?: RequestToCreateProductOrder[]
   pizzas?: RequestToCreatePizzaOrder[]
 }
+
+export interface RequestToUpdateOrder extends Pick<RequestToCreateOrder, 'produtos' | 'pizzas' | 'valor'> {
+  comanda: {
+    codigo: number
+  }
+}

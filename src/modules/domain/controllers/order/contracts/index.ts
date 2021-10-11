@@ -1,3 +1,5 @@
 export * from './Responses'
 export * from './Post'
 export * from './Request'
+export * from './Request'
+export * from './Put'

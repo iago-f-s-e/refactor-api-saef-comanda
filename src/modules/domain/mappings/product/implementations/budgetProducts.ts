@@ -6,6 +6,6 @@ export function budgetProducts (entities: BudgetProduct[]): MappedBudgetProduct[
   return entities.length
     ? entities
       .map(entity => budgetProduct(entity))
-      .sort((prev, next) => prev.nome.localeCompare(next.nome))
+      .sort((prev, next) => prev.ordinal - next.ordinal)
     : []
 }
