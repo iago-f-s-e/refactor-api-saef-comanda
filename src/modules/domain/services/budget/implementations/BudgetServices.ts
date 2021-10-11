@@ -1,6 +1,6 @@
 import { BudgetServicesProtocols } from '../contracts'
 import { BudgetHandlers } from '@domain/infra'
-import { CreateBudget, FindBudget } from '.'
+import { CreateBudget, FindBudget, UpdateBudget } from '.'
 
 export class BudgetServices implements BudgetServicesProtocols {
   constructor (private readonly budgetHandlers: BudgetHandlers) {}
@@ -11,5 +11,9 @@ export class BudgetServices implements BudgetServicesProtocols {
 
   public find (): FindBudget {
     return new FindBudget(this.budgetHandlers)
+  }
+
+  public update (): UpdateBudget {
+    return new UpdateBudget(this.budgetHandlers)
   }
 }

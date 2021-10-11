@@ -1,5 +1,5 @@
 import { OrderProgressHandlers } from '@helpers/infra'
-import { CreateOrderProgress } from '.'
+import { CreateOrderProgress, UpdateOrderProgress } from '.'
 import { OrderProgressServicesProtocols } from '../contracts'
 
 export class OrderProgressServices implements OrderProgressServicesProtocols {
@@ -7,5 +7,9 @@ export class OrderProgressServices implements OrderProgressServicesProtocols {
 
   public create (): CreateOrderProgress {
     return new CreateOrderProgress(this.orderProgressHandlers)
+  }
+
+  public update (): UpdateOrderProgress {
+    return new UpdateOrderProgress(this.orderProgressHandlers)
   }
 }
