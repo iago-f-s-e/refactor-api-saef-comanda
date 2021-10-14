@@ -24,19 +24,24 @@ export function kitchenPizzas (
 
   pizzas.forEach(pizza => {
     const { code, name, followUps } = pizza
+    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 27 ~ pizza', pizza)
 
     const slices = followUps
       .map(followUp => followUp.quantity)
       .reduce((prev, current) => prev + current)
+    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 32 ~ slices', slices)
 
     const residedCode = resize('CODE', code)
+    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 35 ~ residedCode', residedCode)
     const residedName = resize('NAME', name, 30)
+    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 36 ~ residedName', residedName)
 
     command.runSync(`echo   ${residedCode} ${residedName}    ${slices} >> ${fileName}`)
     command.runSync(`echo. >> ${fileName}`)
 
     followUps.forEach(({ name, quantity }) => {
       const residedFollowUpName = resize('NAME', name, 24)
+      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 44 ~ followUps.forEach ~ residedFollowUpName', residedFollowUpName)
 
       command.runSync(`echo          ${residedFollowUpName}   FATIAS ${quantity} >> ${fileName}`)
     })
@@ -48,11 +53,13 @@ export function kitchenPizzas (
   command.runSync(`echo   ============================================= >> ${fileName}`)
 
   pizzas.forEach(({ name, observation }) => {
+    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 56 ~ pizzas.forEach ~ observation', observation)
     if (!observation.length) return
 
     command.runSync(`echo   OBS: ${name}: >> ${fileName}`)
 
     for (let i = 0; i <= observation.length; i += 34) {
+      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 62 ~ pizzas.forEach ~ observation.length', observation.length)
       command.runSync(`echo            ${observation.slice(i, i + 34)} >> ${fileName}`)
     }
   })
