@@ -24,26 +24,25 @@ export function kitchenPizzas (
 
   pizzas.forEach(pizza => {
     const { code, name, followUps } = pizza
-    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 27 ~ pizza', pizza)
 
     const slices = followUps
       .map(followUp => followUp.quantity)
       .reduce((prev, current) => prev + current)
-    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 32 ~ slices', slices)
 
     const residedCode = resize('CODE', code)
-    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 35 ~ residedCode', residedCode)
     const residedName = resize('NAME', name, 30)
-    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 36 ~ residedName', residedName)
 
     command.runSync(`echo   ${residedCode} ${residedName}    ${slices} >> ${fileName}`)
     command.runSync(`echo. >> ${fileName}`)
 
-    followUps.forEach(({ name, quantity }) => {
-      const residedFollowUpName = resize('NAME', name, 24)
+    followUps.forEach(({ name: nameFollowUp, quantity: quantityFollowUp }) => {
+      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 43 ~ followUps.forEach ~ nameFollowUp', nameFollowUp)
+      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 44 ~ followUps.forEach ~ quantityFollowUp', quantityFollowUp)
+
+      const residedFollowUpName = resize('NAME', nameFollowUp, 24)
       console.log('🚀 ~ file: kitchenPizzas.ts ~ line 44 ~ followUps.forEach ~ residedFollowUpName', residedFollowUpName)
 
-      command.runSync(`echo          ${residedFollowUpName}   FATIAS ${quantity} >> ${fileName}`)
+      command.runSync(`echo          ${residedFollowUpName}   FATIAS ${quantityFollowUp} >> ${fileName}`)
     })
 
     command.runSync(`echo.                              >> ${fileName}`)
