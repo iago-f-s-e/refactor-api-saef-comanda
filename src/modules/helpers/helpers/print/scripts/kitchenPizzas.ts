@@ -36,11 +36,7 @@ export function kitchenPizzas (
     command.runSync(`echo. >> ${fileName}`)
 
     followUps.forEach(({ name: nameFollowUp, quantity: quantityFollowUp }) => {
-      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 43 ~ followUps.forEach ~ nameFollowUp', nameFollowUp)
-      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 44 ~ followUps.forEach ~ quantityFollowUp', quantityFollowUp)
-
       const residedFollowUpName = resize('NAME', nameFollowUp, 24)
-      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 44 ~ followUps.forEach ~ residedFollowUpName', residedFollowUpName)
 
       command.runSync(`echo          ${residedFollowUpName}   FATIAS ${quantityFollowUp} >> ${fileName}`)
     })
@@ -52,13 +48,11 @@ export function kitchenPizzas (
   command.runSync(`echo   ============================================= >> ${fileName}`)
 
   pizzas.forEach(({ name, observation }) => {
-    console.log('🚀 ~ file: kitchenPizzas.ts ~ line 56 ~ pizzas.forEach ~ observation', observation)
     if (!observation.length) return
 
     command.runSync(`echo   OBS: ${name}: >> ${fileName}`)
 
     for (let i = 0; i <= observation.length; i += 34) {
-      console.log('🚀 ~ file: kitchenPizzas.ts ~ line 62 ~ pizzas.forEach ~ observation.length', observation.length)
       command.runSync(`echo            ${observation.slice(i, i + 34)} >> ${fileName}`)
     }
   })
