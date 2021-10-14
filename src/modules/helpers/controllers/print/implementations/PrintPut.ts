@@ -1,5 +1,4 @@
 import { Controller, Put } from '@overnightjs/core'
-import { Product } from '@domain/entities'
 import { Request, Response } from 'express'
 import { PrintPutProtocols, RequestToUpdatePrint } from '../contracts'
 import { printMapping } from '@src/modules/helpers/mappings'
@@ -15,19 +14,19 @@ export class PrintPut implements PrintPutProtocols {
     try {
       const budget = await instances.budget.find().byCode(budgetCode)
 
-      if (pizzas) {
+      if (pizzas && pizzas.length) {
         const printProps = printMapping().updateKitchenPizzas({ budget, pizzas })
 
         printAtTheKitchen('PIZZAS', printProps)
       }
 
-      // if (produtos) {
-      //   const { bar, kitchen } = await printMapping().updateKitchenOrBar({ budget, products: produtos }, instances)
+      if (produtos && produtos.length) {
+        const { bar, kitchen } = await printMapping().updateKitchenOrBar({ budget, products: produtos }, instances)
 
-      //   if (bar.products.length) printAtTheBar(bar)
+        if (bar.products.length) printAtTheBar(bar)
 
-      //   if (kitchen.products.length) printAtTheKitchen('PRODUCTS', kitchen)
-      // }
+        if (kitchen.products.length) printAtTheKitchen('PRODUCTS', kitchen)
+      }
 
       return response.status(200).json()
     } catch (error: any) {
