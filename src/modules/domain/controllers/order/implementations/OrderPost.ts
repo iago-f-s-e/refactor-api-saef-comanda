@@ -1,6 +1,6 @@
 import { Controller, Middleware, Post } from '@overnightjs/core'
 import { beginTransaction } from '@src/middlewares'
-import { budgerProductMapping, pizzaMapping } from '@src/modules/domain/mappings'
+import { budgerProductMapping, orderMapping, pizzaMapping } from '@src/modules/domain/mappings'
 import { Request, Response } from 'express'
 import { OrderPostProtocols, RequestToCreateOrder } from '../contracts'
 
@@ -66,7 +66,7 @@ export class OrderPost implements OrderPostProtocols {
 
       await transactions.commit()
 
-      return response.status(200).json()
+      return response.status(200).json({ results: budget.budgetCode })
     } catch (error: any) {
       await transactions.rollback()
 
