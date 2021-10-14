@@ -1,6 +1,6 @@
 import { Controller, Middleware, Post } from '@overnightjs/core'
 import { beginTransaction } from '@src/middlewares'
-import { budgerProductMapping, orderMapping, pizzaMapping } from '@src/modules/domain/mappings'
+import { budgerProductMapping, pizzaMapping } from '@src/modules/domain/mappings'
 import { Request, Response } from 'express'
 import { OrderPostProtocols, RequestToCreateOrder } from '../contracts'
 

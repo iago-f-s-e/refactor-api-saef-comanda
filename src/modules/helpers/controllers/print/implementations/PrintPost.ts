@@ -1,5 +1,6 @@
 import { Budget } from '@domain/entities'
-import { Controller, Post } from '@overnightjs/core'
+import { Controller, Middleware, Post } from '@overnightjs/core'
+import { beginTransaction } from '@src/middlewares'
 import { budgerProductMapping } from '@src/modules/domain/mappings'
 import { printAtTheBar, printAtTheKitchen, printOrder, printOrdersByTable } from '@src/modules/helpers/helpers'
 import { printMapping } from '@src/modules/helpers/mappings'
@@ -89,9 +90,10 @@ export class PrintPost implements PrintPostProtocols {
   }
 
   @Post('kitchen')
+  @Middleware(beginTransaction)
   public async requestToPrintAtTheKitchen (request: Request, response: Response): Promise<Response> {
     const { budget: queryBudget } = request.query
-    const { instances } = request
+    const { instances, transactions } = request
 
     try {
       const budgetCode = this.getCode(queryBudget)
@@ -112,8 +114,11 @@ export class PrintPost implements PrintPostProtocols {
         printAtTheKitchen('PIZZAS', printProps)
       }
 
+      await transactions.commit()
+
       return response.status(200).json()
     } catch (error: any) {
+      await transactions.rollback()
       return response.status(400).json({ error: error.message })
     }
   }
