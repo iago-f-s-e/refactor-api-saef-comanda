@@ -40,7 +40,6 @@ export class PrintPut implements PrintPutProtocols {
 
       return response.status(200).json()
     } catch (error: any) {
-      console.log(error)
       return response.status(400).json({ error: error.message })
     }
   }
