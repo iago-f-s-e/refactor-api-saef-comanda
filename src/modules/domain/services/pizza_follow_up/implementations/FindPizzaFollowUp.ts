@@ -6,11 +6,14 @@ export class FindPizzaFollowUp implements FindPizzaFollowUpProtocols {
   constructor (private readonly pizzaFollowUpHandlers: PizzaFollowUpHandlers) {}
 
   public async byBudgetAndProductIndex ({ budgetCode, productIndex }: FindPizzaFollowUpProps): Promise<PizzaFollowUp[]> {
-    const pizzaFollowUp = await this.pizzaFollowUpHandlers.queryBuilder
-      .innerJoinAndSelect('PizzaFollowUp.product', 'product')
-      .where('PizzaFollowUp.productIndex = :productIndex', { productIndex })
-      .andWhere('PizzaFollowUp.budgetCode = :budgetCode', { budgetCode })
-      .getMany()
+    const pizzaFollowUp = await this.pizzaFollowUpHandlers.repository.find({
+      where: { budgetCode, productIndex },
+      relations: ['product']
+    })
+    // .innerJoinAndSelect('PizzaFollowUp.product', 'product')
+    // .where('PizzaFollowUp.productIndex = :productIndex', { productIndex })
+    // .andWhere('PizzaFollowUp.budgetCode = :budgetCode', { budgetCode })
+    // .getMany()
 
     return pizzaFollowUp
   }
