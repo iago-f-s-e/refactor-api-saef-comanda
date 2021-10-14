@@ -25,8 +25,6 @@ export class PrintPut implements PrintPutProtocols {
 
         const printProps = await printMapping().updateKitchenPizzas({ budget, pizzas }, instances)
 
-        console.log(printProps.pizzas[0].followUps)
-
         printAtTheKitchen('PIZZAS', printProps)
       }
 

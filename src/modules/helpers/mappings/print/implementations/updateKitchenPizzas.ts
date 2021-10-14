@@ -8,6 +8,8 @@ export async function updateKitchenPizzas (
   const pizzasWithFollowUps: PrintKitchenPizzaProps[] = []
 
   for (const pizza of pizzas) {
+    console.log('🚀 ~ file: updateKitchenPizzas.ts ~ line 11 ~ pizza', pizza)
+
     const pizzaEntity = await instances.product.find().byProductCode(pizza.codigo)
 
     const followUps: PrintFollowUpProps[] = pizza.acompanhamentos.map(followUps => ({
