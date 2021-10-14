@@ -8,7 +8,8 @@ import {
   BudgetServices,
   BudgetProductServices,
   PizzaFollowUpServices,
-  OrderServices
+  OrderServices,
+  ProductServices
 } from '@domain/services'
 
 export interface Instances {
@@ -22,6 +23,7 @@ export interface Instances {
   budget: BudgetServices
   budgetProducts: BudgetProductServices
   order: OrderServices
+  product: ProductServices
 
   config: ConfigServices
   sequential: SequentialServices

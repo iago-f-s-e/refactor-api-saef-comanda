@@ -12,6 +12,8 @@ export class FindBudget implements FindBudgetProtocols {
   public async byCode (budgetCode: number): Promise<Budget> {
     const budget = await this.budgetHandles.queryBuilder
       .innerJoinAndSelect('Budget.products', 'products')
+      .innerJoinAndSelect('products.product', 'product')
+      .leftJoinAndSelect('Budget.order', 'order')
       .where('Budget.budgetCode = :budgetCode', { budgetCode })
       .getOne()
 

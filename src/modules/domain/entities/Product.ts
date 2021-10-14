@@ -7,13 +7,13 @@ import { BudgetProduct, Group, PizzaFollowUp } from '.'
 @Entity('Produto', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
 export class Product {
   @PrimaryGeneratedColumn({ type: 'int', name: 'cdProduto' })
-  productCode!: number;
+  productCode!: number
 
   @Column('varchar', { name: 'nmproduto', length: 40 })
-  name!: string;
+  name!: string
 
   @Column({ type: 'money', name: 'vlPreco' })
-  price!: number;
+  price!: number
 
   @Column({ type: 'varchar', name: 'dsUnidade', length: 6 })
   unity!: string

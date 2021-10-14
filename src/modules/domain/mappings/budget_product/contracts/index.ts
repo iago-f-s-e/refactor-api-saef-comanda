@@ -12,7 +12,13 @@ export interface BudgetProductsMappingProps {
   index: number
 }
 
+export interface PizzasAndProducts {
+  pizzas: BudgetProduct[]
+  products: BudgetProduct[]
+}
+
 export interface BudgetProductMappingProtocols {
   createBudgetProductProps: (props: BudgetProductMappingProps) => BudgetProduct
-  createBudgetProductsProps:(props: BudgetProductsMappingProps) => BudgetProduct[]
+  createBudgetProductsProps: (props: BudgetProductsMappingProps) => BudgetProduct[]
+  separatePizzas: (budgetProducts: BudgetProduct[]) => PizzasAndProducts
 }
