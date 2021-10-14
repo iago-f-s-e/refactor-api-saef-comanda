@@ -45,6 +45,6 @@ export interface PrintMapping {
   kitchenPizzas: (props: KitchenPizzaProps, instances: Instances) => Promise<PrintPizzaKitchen>
   kitchenProducts: (props: KitchenProductProps) => PrintProductKitchen
   ordersByTable: (props: OrdersByTableProps) => PrintOrderByTable
-  updateKitchenPizzas: (props: UpdateKitchenPizzaProps, instances: Instances) =>Promise<PrintPizzaKitchen>
+  updateKitchenPizzas: (props: UpdateKitchenPizzaProps) => PrintPizzaKitchen
   updateKitchenOrBar: (props: UpdateKitchenOrBarProps, instances: Instances) => Promise<{kitchen: PrintProductKitchen, bar: PrintBar}>
 }

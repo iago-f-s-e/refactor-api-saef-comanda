@@ -13,6 +13,7 @@ export interface FollowUp {
 
 export interface RequestToCreatePizzaOrder {
   codigo: number
+  nome: string
   preço: number
   observacao: string
   tamanho: Size
