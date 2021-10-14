@@ -22,10 +22,10 @@ export async function kitchenPizzas (
 
     const pizzaWithFollowUps: PrintKitchenPizzaProps = {
       code: pizza.product.productCode,
-      followUps,
       name: pizza.product.name,
       quantity: pizza.quantity,
-      observation: pizza.observation || ''
+      observation: pizza.observation || '',
+      followUps
     }
 
     pizzasWithFollowUps.push(pizzaWithFollowUps)
