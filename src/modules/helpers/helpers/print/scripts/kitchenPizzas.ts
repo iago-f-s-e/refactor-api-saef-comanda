@@ -48,7 +48,7 @@ export function kitchenPizzas (
   command.runSync(`echo   ============================================= >> ${fileName}`)
 
   pizzas.forEach(({ name, observation }) => {
-    if (!observation) return
+    if (!observation.length) return
 
     command.runSync(`echo   OBS: ${name}: >> ${fileName}`)
 

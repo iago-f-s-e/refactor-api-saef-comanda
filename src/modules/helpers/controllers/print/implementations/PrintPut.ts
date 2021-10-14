@@ -28,13 +28,13 @@ export class PrintPut implements PrintPutProtocols {
         printAtTheKitchen('PIZZAS', printProps)
       }
 
-      if (produtos) {
-        const { bar, kitchen } = await printMapping().updateKitchenOrBar({ budget, products: produtos }, instances)
+      // if (produtos) {
+      //   const { bar, kitchen } = await printMapping().updateKitchenOrBar({ budget, products: produtos }, instances)
 
-        if (bar.products.length) printAtTheBar(bar)
+      //   if (bar.products.length) printAtTheBar(bar)
 
-        if (kitchen.products.length) printAtTheKitchen('PRODUCTS', kitchen)
-      }
+      //   if (kitchen.products.length) printAtTheKitchen('PRODUCTS', kitchen)
+      // }
 
       return response.status(200).json()
     } catch (error: any) {
