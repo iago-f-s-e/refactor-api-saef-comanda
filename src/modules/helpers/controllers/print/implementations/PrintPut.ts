@@ -19,13 +19,11 @@ export class PrintPut implements PrintPutProtocols {
         const pizzasEntity: Product[] = []
         for (const pizza of pizzas) {
           const pizzaEntity = await instances.product.find().byProductCode(pizza.codigo)
-          console.log('🚀 ~ file: PrintPut.ts ~ line 22 ~ PrintPut ~ requestToUpdatePrint ~ pizzaEntity', pizzaEntity)
 
           pizzasEntity.push(pizzaEntity)
         }
 
         const printProps = await printMapping().updateKitchenPizzas({ budget, pizzas }, instances)
-        console.log('🚀 ~ file: PrintPut.ts ~ line 27 ~ PrintPut ~ requestToUpdatePrint ~ printProps', printProps)
 
         printAtTheKitchen('PIZZAS', printProps)
       }

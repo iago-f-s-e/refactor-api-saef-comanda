@@ -6,8 +6,11 @@ export function printAtTheKitchen (type: 'PIZZAS' | 'PRODUCTS', payload: PrintPi
   const path = paths('KITCHEN')
 
   if (type === 'PIZZAS') createScript().kitchenPizzas(payload as PrintPizzaKitchen, path)
+  console.log('🚀 ~ file: printAtTheKitchen.ts ~ line 9 ~ printAtTheKitchen ~ payload', payload)
 
   if (type === 'PRODUCTS') createScript().kitchenProducts(payload as PrintProductKitchen, path)
+  console.log('🚀 ~ file: printAtTheKitchen.ts ~ line 12 ~ printAtTheKitchen ~ payload', payload)
 
   print(path)
+  console.log('🚀 ~ file: printAtTheKitchen.ts ~ line 15 ~ printAtTheKitchen ~ path', path)
 }
