@@ -1,5 +1,6 @@
 import { Product } from '@domain/entities'
 import { MappedProduct } from '@domain/controllers'
+import { getIsPizza } from '@src/modules/domain/utils'
 
 export function product (entity: Product): MappedProduct {
   return {
@@ -16,15 +17,6 @@ export function product (entity: Product): MappedProduct {
 
 function getIsOwnProduct (ownProduct: 'T' | 'P'): boolean {
   if (ownProduct === 'P') return true
-
-  return false
-}
-
-function getIsPizza (name: string, composition: number): boolean {
-  const nameIncludesPizza = name.toUpperCase().includes('PIZZA')
-  const compositionIsTypeTwo = composition === 2
-
-  if (nameIncludesPizza && compositionIsTypeTwo) return true
 
   return false
 }

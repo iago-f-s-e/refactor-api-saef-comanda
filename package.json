@@ -25,6 +25,7 @@
     "helmet": "^4.6.0",
     "jsonwebtoken": "^8.5.1",
     "mssql": "^7.2.1",
+    "node-cmd": "^5.0.0",
     "pg": "^8.7.1",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.1.6",

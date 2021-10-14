@@ -7,7 +7,17 @@ import { EmployeeServices } from '@auth/services'
 import { Config, OrderProgress, Sequential } from '@helpers/entities'
 import { ConfigServices, OrderProgressServices, SequentialServices } from '@helpers/services'
 
-import { Table, Group, Pizza, PizzaFlavors, Budget, BudgetProduct, PizzaFollowUp, Order } from '@domain/entities'
+import {
+  Table,
+  Group,
+  Pizza,
+  PizzaFlavors,
+  Budget,
+  BudgetProduct,
+  PizzaFollowUp,
+  Order,
+  Product
+} from '@domain/entities'
 import {
   TableServices,
   GroupServices,
@@ -16,7 +26,8 @@ import {
   PizzaFollowUpServices,
   BudgetServices,
   BudgetProductServices,
-  OrderServices
+  OrderServices,
+  ProductServices
 } from '@domain/services'
 
 export function initializeInstances (): Instances {
@@ -31,6 +42,7 @@ export function initializeInstances (): Instances {
     budget: new BudgetServices(typeormHandlers(Budget)),
     budgetProducts: new BudgetProductServices(typeormHandlers(BudgetProduct)),
     order: new OrderServices(typeormHandlers(Order)),
+    product: new ProductServices(typeormHandlers(Product)),
 
     config: new ConfigServices(typeormHandlers(Config)),
     sequential: new SequentialServices(typeormHandlers(Sequential)),
