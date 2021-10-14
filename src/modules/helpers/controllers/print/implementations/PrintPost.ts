@@ -1,10 +1,8 @@
 import { Budget } from '@domain/entities'
-import { Controller, Middleware, Post } from '@overnightjs/core'
-import { beginTransaction } from '@src/middlewares'
+import { Controller, Post } from '@overnightjs/core'
 import { budgerProductMapping } from '@src/modules/domain/mappings'
 import { printAtTheBar, printAtTheKitchen, printOrder, printOrdersByTable } from '@src/modules/helpers/helpers'
 import { printMapping } from '@src/modules/helpers/mappings'
-import { kitchen } from '@src/modules/helpers/mappings/print/implementations/kitchen'
 import { Request, Response } from 'express'
 import { PrintPostProtocols } from '../contracts'
 
@@ -100,29 +98,19 @@ export class PrintPost implements PrintPostProtocols {
 
       const budget = await instances.budget.find().byCode(budgetCode)
 
-      const { printPizzaKitchen, printProductKitchen } = await kitchen(budget, instances)
+      const { pizzas, products } = budgerProductMapping().separatePizzas(budget.products)
 
-      if (printPizzaKitchen.pizzas.length) {
-        printAtTheKitchen('PIZZAS', printPizzaKitchen)
+      if (products.length) {
+        const printProps = printMapping().kitchenProducts({ budget, products })
+
+        printAtTheKitchen('PRODUCTS', printProps)
       }
 
-      if (printProductKitchen.products.length) {
-        printAtTheKitchen('PRODUCTS', printProductKitchen)
+      if (pizzas.length) {
+        const printProps = await printMapping().kitchenPizzas({ budget, pizzas }, instances)
+
+        printAtTheKitchen('PIZZAS', printProps)
       }
-
-      // const { pizzas, products } = budgerProductMapping().separatePizzas(budget.products)
-
-      // if (products.length) {
-      //   const printProps = printMapping().kitchenProducts({ budget, products })
-
-      //   printAtTheKitchen('PRODUCTS', printProps)
-      // }
-
-      // if (pizzas.length) {
-      //   const printProps = await printMapping().kitchenPizzas({ budget, pizzas }, instances)
-
-      //   printAtTheKitchen('PIZZAS', printProps)
-      // }
 
       return response.status(200).json()
     } catch (error: any) {

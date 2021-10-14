@@ -10,10 +10,6 @@ export class FindPizzaFollowUp implements FindPizzaFollowUpProtocols {
       where: { budgetCode, productIndex },
       relations: ['product']
     })
-    // .innerJoinAndSelect('PizzaFollowUp.product', 'product')
-    // .where('PizzaFollowUp.productIndex = :productIndex', { productIndex })
-    // .andWhere('PizzaFollowUp.budgetCode = :budgetCode', { budgetCode })
-    // .getMany()
 
     return pizzaFollowUp
   }
