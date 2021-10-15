@@ -1,8 +1,8 @@
 import { Controller, Put } from '@overnightjs/core'
 import { Request, Response } from 'express'
 import { PrintPutProtocols, RequestToUpdatePrint } from '../contracts'
-import { printMapping } from '@src/modules/helpers/mappings'
-import { printAtTheBar, printAtTheKitchen } from '@src/modules/helpers/helpers'
+import { printMapping } from '@helpers/mappings'
+import { printAtTheBar, printAtTheKitchen } from '@helpers/functions'
 
 @Controller('')
 export class PrintPut implements PrintPutProtocols {
