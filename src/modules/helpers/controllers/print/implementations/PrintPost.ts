@@ -1,8 +1,8 @@
 import { Budget } from '@domain/entities'
 import { Controller, Post } from '@overnightjs/core'
-import { budgerProductMapping } from '@src/modules/domain/mappings'
-import { printAtTheBar, printAtTheKitchen, printOrder, printOrdersByTable } from '@src/modules/helpers/helpers'
-import { printMapping } from '@src/modules/helpers/mappings'
+import { budgerProductMapping } from '@domain/mappings'
+import { printAtTheBar, printAtTheKitchen, printOrder, printOrdersByTable } from '@helpers/functions'
+import { printMapping } from '@helpers/mappings'
 import { Request, Response } from 'express'
 import { PrintPostProtocols } from '../contracts'
 

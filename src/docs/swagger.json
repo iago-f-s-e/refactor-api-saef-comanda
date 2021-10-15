@@ -2,10 +2,29 @@
   "openapi": "3.0.0",
   "info": {
     "title": "API Saef Comanda",
-    "description": "...",
-    "version": "0.0.1"
+    "description": "Api para o aplicativo Saef Comanda. Com essa api é possível cadastrar novas comandas, gerenciar as comandas já cadastradas com funcionalidades de imprimir e atualizar, também é possivel visualizar as mesas livre e ocupadas e suas comandas",
+    "version": "4.0.0"
   },
-  "tags": [],
-  "paths": {},
+  "tags": [
+    { "name": "funcionário" }
+  ],
+  "paths": {
+    "/funcionarios/login": {
+      "get": {
+        "tags": ["funcionário"],
+        "summary": "Login do funcionário",
+        "description": "Essa rota é responsável pelo login do funcionário o qual receberá um token de acesso",
+        "parameters": [
+          {
+            "name": "login query",
+            "in": "query",
+            "required": true,
+            "description": "query de login",
+            "example": "codigo={codigo}&&senha={senha}"
+          }
+        ]
+      }
+    }
+  },
   "components": {}
 }

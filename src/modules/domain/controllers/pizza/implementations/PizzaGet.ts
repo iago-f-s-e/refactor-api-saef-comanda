@@ -1,11 +1,13 @@
-import { Controller, Get } from '@overnightjs/core'
-import { pizzaMapping, pizzaFlavorsMapping } from '@src/modules/domain/mappings'
+import { Controller, Get, Middleware } from '@overnightjs/core'
+import { authEmployee } from '@src/modules/auth/middlewares'
+import { pizzaMapping, pizzaFlavorsMapping } from '@domain/mappings'
 import { Request, Response } from 'express'
 import { PizzaGetProtocols } from '../contracts'
 
 @Controller('')
 export class PizzaGet implements PizzaGetProtocols {
   @Get('flavors')
+  @Middleware(authEmployee)
   public async requestToListFlavors (request: Request, response: Response): Promise<Response> {
     const { instances } = request
     const { sizeCode: pizzaCode } = request.query
