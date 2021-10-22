@@ -2,7 +2,7 @@ import { Column, Entity, Index, JoinColumn, OneToOne, PrimaryColumn } from 'type
 import { Budget } from './Budget'
 
 @Index('PK_Comanda_nrOrcamento', ['budgetCode'], { unique: true })
-@Entity('Comanda', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('Comanda', { schema: 'dbo' })
 export class Order {
   @PrimaryColumn({ type: 'int', name: 'nrOrcamento' })
   budgetCode!: number;
@@ -10,7 +10,7 @@ export class Order {
   @Column({ type: 'varchar', name: 'nrComanda' })
   orderIdentifier!: string;
 
-  @Column({ type: process.env.NODE_ENV !== 'production' ? 'boolean' : 'bit', name: 'finalizada', default: false })
+  @Column({ type: 'bit', name: 'finalizada', default: false })
   finished!: boolean;
 
   @Column({ type: 'int', name: 'OrcamentoPrincipal', nullable: true })

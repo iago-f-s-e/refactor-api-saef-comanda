@@ -2,7 +2,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryColumn } from 'typ
 import { Budget, Product } from '.'
 
 @Index('PK_IteOrcamento', ['budgetProductCode', 'budget', 'productCode'], { unique: true })
-@Entity('IteOrcamento', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('IteOrcamento', { schema: 'dbo' })
 export class BudgetProduct {
   @PrimaryColumn({ type: 'int', name: 'cdIteLcto' })
   budgetProductCode!: number
@@ -28,7 +28,7 @@ export class BudgetProduct {
   @Column({ type: 'varchar', name: 'dsSituacao', default: '', nullable: true, length: 1 })
   situation!: string
 
-  @Column({ type: process.env.NODE_ENV !== 'production' ? 'boolean' : 'bit', name: 'impresso', default: 0, nullable: true })
+  @Column({ type: 'bit', name: 'impresso', default: 0, nullable: true })
   printed!: boolean
 
   @Column({ type: 'varchar', name: 'observacao', nullable: true, length: 200 })
@@ -43,7 +43,7 @@ export class BudgetProduct {
   @Column({ type: 'int', name: 'nrRequisicao', default: 0, nullable: true })
   request?: number
 
-  @Column({ type: process.env.NODE_ENV !== 'production' ? 'boolean' : 'bit', name: 'itemPromocao', default: 0, nullable: true })
+  @Column({ type: 'bit', name: 'itemPromocao', default: 0, nullable: true })
   isPromotion?: boolean
 
   @ManyToOne(() => Budget, budget => budget.products, { onDelete: 'CASCADE', onUpdate: 'CASCADE', primary: true })

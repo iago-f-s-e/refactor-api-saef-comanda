@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryColumn } from 'typeorm'
 
 @Index('PK__TamanhoP__AB3F3DE5005FFE8A', ['pizzaCode'], { unique: true })
-@Entity('TamanhoPizza', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('TamanhoPizza', { schema: 'dbo' })
 export class Pizza {
   @PrimaryColumn({ type: 'int', name: 'cdTamanhoPizza' })
   pizzaCode!: number;

@@ -1,7 +1,7 @@
 import { Column, Entity, Index, PrimaryColumn } from 'typeorm'
 
 @Index('PK__Sequencial', ['sequentialCode'], { unique: true })
-@Entity('Sequencial', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('Sequencial', { schema: 'dbo' })
 export class Sequential {
   @PrimaryColumn({ type: 'int', name: 'cdCodigo' })
   sequentialCode!: number;

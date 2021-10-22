@@ -33,7 +33,7 @@ export class Server extends SetupServer {
     this.app.use(helmet())
     this.app.use(express.json())
     this.app.use(express.urlencoded({ extended: true }))
-    this.app.use(`/api/${process.env.API_VERSION}/api-docs`, swaggerUi.serve, swaggerUi.setup(swaggerDocs))
+    this.app.use('/api/v1/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs))
     this.app.use(beginInstances)
   }
 
@@ -57,8 +57,8 @@ export class Server extends SetupServer {
   }
 
   public start (): void {
-    this.app.listen(process.env.PORT || 8080, () => {
-      console.log(`Server running on port: ${process.env.PORT || 8080}`)
+    this.app.listen(3000, () => {
+      console.log('Server running on port: 3000')
     })
   }
 }

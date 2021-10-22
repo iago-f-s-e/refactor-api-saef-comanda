@@ -1,0 +1,1 @@
+export const secret = 'Eu sou como o velho barco que guarda no seu bojo o eterno ruído do mar batendo No entanto como está longe o mar e como é dura a terra sob mim... Felizes são os pássaros que chegam mais cedo que eu à suprema fraqueza E que, voando, caem, pequenos e abençoados, nos parques onde a primavera é eterna.'

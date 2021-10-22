@@ -2,7 +2,7 @@ import { Column, Entity, Index, OneToMany, PrimaryColumn } from 'typeorm'
 import { Budget } from './Budget'
 
 @Index('PK_Mesa_cdMesa', ['tableCode'], { unique: true })
-@Entity('Mesa', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('Mesa', { schema: 'dbo' })
 export class Table {
   @PrimaryColumn({ type: 'int', name: 'cdMesa' })
   tableCode!: number
@@ -10,7 +10,7 @@ export class Table {
   @Column({ type: 'varchar', name: 'dsMesa', nullable: true })
   description?: string
 
-  @Column({ type: process.env.NODE_ENV !== 'production' ? 'boolean' : 'bit', name: 'EmUso', default: false })
+  @Column({ type: 'bit', name: 'EmUso', default: false })
   inUse!: boolean
 
   @OneToMany(() => Budget, budgets => budgets.table)

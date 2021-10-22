@@ -8,14 +8,14 @@
   "scripts": {
     "build": "babel src --extensions \".js,.ts\" --out-dir dist --copy-files --no-copy-ignored",
     "start": "yarn build && yarn start:prod",
-    "start:prod": "env NODE_ENV=production node dist/index.js",
-    "start:dev": "env NODE_ENV=test ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts",
+    "start:prod": "node dist/index.js",
+    "start:dev": "ts-node-dev -r tsconfig-paths/register --respawn --transpile-only --ignore-watch node_modules --no-notify src/index.ts",
     "test": "yarn test:unit && yarn test:functional",
-    "test:unit": "env NODE_ENV=test jest --detectOpenHandles",
-    "test:functional": "env NODE_ENV=test jest --projects ./test --runInBand",
-    "typeorm:run": "env NODE_ENV=test ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run",
-    "typeorm:revert": "env NODE_ENV=test ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert",
-    "typeorm:generate": "env NODE_ENV=test ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate -n"
+    "test:unit": "jest --detectOpenHandles",
+    "test:functional": "jest --projects ./test --runInBand",
+    "typeorm:run": "ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js migration:run",
+    "typeorm:revert": "ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js migration:revert",
+    "typeorm:generate": "ts-node-dev -r tsconfig-paths/register node_modules/typeorm/cli.js migration:generate -n"
   },
   "dependencies": {
     "@overnightjs/core": "^1.7.6",

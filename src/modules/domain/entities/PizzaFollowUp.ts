@@ -9,7 +9,7 @@ import {
 import { Product } from './Product'
 
 @Index('PK_IteAcompanhamento_cdIteAcomp', ['pizzaFollowUpCode'], { unique: true })
-@Entity('IteAcompanhamento', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('IteAcompanhamento', { schema: 'dbo' })
 export class PizzaFollowUp {
   @PrimaryGeneratedColumn('increment', { type: 'int', name: 'cdIteAcomp' })
   pizzaFollowUpCode!: number

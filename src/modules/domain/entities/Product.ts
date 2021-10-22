@@ -4,7 +4,7 @@ import { BudgetProduct, Group, PizzaFollowUp } from '.'
 
 @Index('IX_Produto_nmProduto', ['name'], {})
 @Index('PK_Produto', ['productCode'], { unique: true })
-@Entity('Produto', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('Produto', { schema: 'dbo' })
 export class Product {
   @PrimaryGeneratedColumn({ type: 'int', name: 'cdProduto' })
   productCode!: number

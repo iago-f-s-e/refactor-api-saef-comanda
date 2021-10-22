@@ -3,6 +3,7 @@ import { Employee } from '@auth/entities'
 import { MappedEmployeeWithToken } from '@auth/controllers'
 import { employee } from './employee'
 import { PayloadToken } from '../contracts/PayloadToken'
+import { secret } from '@src/modules/auth/constants'
 
 export function employeeWithToken (entity: Employee): MappedEmployeeWithToken {
   const funcionario = employee(entity)
@@ -19,7 +20,7 @@ export function employeeWithToken (entity: Employee): MappedEmployeeWithToken {
 function generateToken (payloadToken: PayloadToken): string {
   const payload = JSON.parse(JSON.stringify(payloadToken))
 
-  return jwt.sign(payload, process.env.AUTH_KEY_SECURITY as string, {
-    expiresIn: process.env.AUTH_KEY_TOKEN_EXPIRES || 36000000
+  return jwt.sign(payload, secret, {
+    expiresIn: 36000000
   })
 }

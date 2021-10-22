@@ -4,7 +4,7 @@ import { Table, Order, BudgetProduct } from '.'
 @Index('IX_Orcamento_cdCliente', ['client'], {})
 @Index('IX_Orcamento_cdPessoa', ['personCode'], {})
 @Index('PK_Orcamento', ['budgetCode'], { unique: true })
-@Entity('Orcamento', { schema: process.env.NODE_ENV !== 'production' ? 'public' : 'dbo' })
+@Entity('Orcamento', { schema: 'dbo' })
 export class Budget {
   @PrimaryColumn({ type: 'int', name: 'nrOrcamento' })
   budgetCode!: number
@@ -27,10 +27,10 @@ export class Budget {
   @Column({ type: 'money', name: 'vlvalor', nullable: true })
   value!: number
 
-  @CreateDateColumn({ type: process.env.NODE_ENV !== 'production' ? 'timestamp' : 'datetime', name: 'dtEmissao', nullable: true })
+  @CreateDateColumn({ type: 'datetime', name: 'dtEmissao', nullable: true })
   emission!: Date
 
-  @CreateDateColumn({ type: process.env.NODE_ENV !== 'production' ? 'timestamp' : 'datetime', name: 'hrHora', default: 'now()', nullable: true })
+  @CreateDateColumn({ type: 'datetime', name: 'hrHora', default: 'now()', nullable: true })
   hour!: Date
 
   @Column({ type: 'real', name: 'nrDesconto', default: 0, nullable: true })
@@ -54,7 +54,7 @@ export class Budget {
   @Column({ type: 'char', name: 'tipoPedido', default: 'M', nullable: true, length: 1 })
   orderType!: string
 
-  @Column({ type: process.env.NODE_ENV !== 'production' ? 'boolean' : 'bit', name: 'quitado', default: 0, nullable: true })
+  @Column({ type: 'bit', name: 'quitado', default: 0, nullable: true })
   paidOut!: boolean
 
   @Column({ type: 'real', name: 'trocoPara', default: 0, nullable: true })
