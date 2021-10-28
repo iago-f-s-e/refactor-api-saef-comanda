@@ -1,10 +1,9 @@
-import { ChildControllers, ClassMiddleware, Controller } from '@overnightjs/core'
-import { authEmployee } from '@auth/middlewares'
+import { ChildControllers, Controller } from '@overnightjs/core'
 import { PrintPost } from './PrintPost'
 import { PrintPut } from './PrintPut'
 
 @Controller('print')
-@ClassMiddleware(authEmployee)
+// @ClassMiddleware(authEmployee)
 @ChildControllers([
   new PrintPost(),
   new PrintPut()
