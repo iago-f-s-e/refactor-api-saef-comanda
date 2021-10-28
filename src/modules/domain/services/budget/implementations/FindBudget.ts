@@ -22,7 +22,7 @@ export class FindBudget implements FindBudgetProtocols {
     return budget
   }
 
-  public async byTable (tableCode: number): Promise<Budget[]> {
+  public async byTable (tableCode: number, useOrder: boolean): Promise<Budget[]> {
     const budgets = await this.budgetHandles.repository.find({
       where: { tableCode, printed: 'N' },
       relations: ['order'],
@@ -35,6 +35,6 @@ export class FindBudget implements FindBudgetProtocols {
       }
     })
 
-    return this.filterOrders(budgets)
+    return useOrder ? this.filterOrders(budgets) : budgets
   }
 }

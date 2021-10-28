@@ -3,7 +3,7 @@ module.exports = {
   host: '192.168.0.25',
   username: 'sa',
   password: 'supportdatasql',
-  database: 'Demostracao_Matriz',
+  database: 'Dniels_Burguer',
   options: {
     encrypt: false
   },

@@ -15,7 +15,7 @@ export class TableGet implements TableGetProtocols {
 
     for (const tableIndex in closedTables) {
       const { tableCode } = closedTables[tableIndex]
-      const budgets = await instances.budget.find().byTable(tableCode)
+      const budgets = await instances.budget.find().byTable(tableCode, useOrder)
 
       Object.assign(closedTables[tableIndex], { budgets })
     }
