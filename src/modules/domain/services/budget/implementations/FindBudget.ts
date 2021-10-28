@@ -22,8 +22,8 @@ export class FindBudget implements FindBudgetProtocols {
     return budget
   }
 
-  public async byTable (tableCode: number, useOrder: boolean): Promise<Budget[]> {
-    const budgets = await this.budgetHandles.repository.find({
+  private async getBudgetsWithOrders (tableCode: number): Promise<Budget[]> {
+    return await this.budgetHandles.repository.find({
       where: { tableCode, printed: 'N' },
       relations: ['order'],
       join: {
@@ -34,7 +34,26 @@ export class FindBudget implements FindBudgetProtocols {
         }
       }
     })
+  }
 
-    return useOrder ? this.filterOrders(budgets) : budgets
+  private async getBudgetsWithoutOrders (tableCode: number): Promise<Budget[]> {
+    return await this.budgetHandles.repository.find({
+      where: { tableCode, printed: 'N' },
+      join: {
+        alias: 'Budget',
+        innerJoinAndSelect: {
+          budgetProducts: 'Budget.products',
+          product: 'budgetProducts.product'
+        }
+      }
+    })
+  }
+
+  public async byTable (tableCode: number, useOrder: boolean): Promise<Budget[]> {
+    if (useOrder) {
+      return this.filterOrders(await this.getBudgetsWithOrders(tableCode))
+    }
+
+    return this.getBudgetsWithoutOrders(tableCode)
   }
 }
