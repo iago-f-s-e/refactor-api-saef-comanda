@@ -14,7 +14,7 @@ export function bar (
   command.runSync(`echo                       B A R                     >> ${fileName}`)
   command.runSync(`echo   ============================================= >> ${fileName}`)
   command.runSync(`echo   MESA:    ${tableCode} >> ${fileName}`)
-  command.runSync(`echo   COMANDA: ${orderCode} >> ${fileName}`)
+  command.runSync(`echo   COMANDA: ${orderCode || ''} >> ${fileName}`)
   command.runSync(`echo   DATA:    ${date} ${time} >> ${fileName}`)
   command.runSync(`echo   PEDIDO:  ${budgetCode} >> ${fileName}`)
   command.runSync(`echo   ============================================= >> ${fileName}`)

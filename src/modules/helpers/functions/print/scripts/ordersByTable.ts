@@ -20,7 +20,7 @@ export function ordersByTable (
   command.runSync(`echo   ============================================= >> ${fileName}`)
   command.runSync(`echo   MESA: ${table.number}                         >> ${fileName}`)
   command.runSync(`echo   ${budgets} >> ${fileName}`)
-  command.runSync(`echo   ${orders}  >> ${fileName}`)
+  command.runSync(`echo   ${orders.length ? orders : ''}  >> ${fileName}`)
   command.runSync(`echo   PERMANENCIA: ${minutes}                       >> ${fileName}`)
   command.runSync(`echo   DATA: ${table.date}  HORA: ${table.hour}      >> ${fileName}`)
   command.runSync(`echo   ============================================= >> ${fileName}`)

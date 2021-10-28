@@ -18,7 +18,7 @@ export function order (
   command.runSync(`echo   ============================================= >> ${fileName}`)
   command.runSync(`echo   MESA: ${table.number}                         >> ${fileName}`)
   command.runSync(`echo   PEDIDO: ${budgetCode}                   >> ${fileName}`)
-  command.runSync(`echo   COMANDA: ${orderCode}                   >> ${fileName}`)
+  command.runSync(`echo   COMANDA: ${orderCode || ''}                   >> ${fileName}`)
   command.runSync(`echo   PERMANENCIA: ${minutes}                       >> ${fileName}`)
   command.runSync(`echo   DATA: ${table.date}  HORA: ${table.hour}      >> ${fileName}`)
   command.runSync(`echo   ============================================= >> ${fileName}`)
