@@ -13,7 +13,7 @@ export function bar (budget: Budget): PrintBar {
 
   return {
     budgetCode: budget.budgetCode.toString(),
-    orderCode: budget.order.orderIdentifier,
+    orderCode: budget.order ? budget.order.orderIdentifier : undefined,
     tableCode: budget.tableCode,
     products,
     date: new Date().toLocaleDateString(),

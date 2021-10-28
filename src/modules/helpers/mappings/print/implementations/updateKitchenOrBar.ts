@@ -10,7 +10,7 @@ export async function updateKitchenOrBar (
 
   const props = {
     budgetCode: budget.budgetCode.toString(),
-    orderCode: budget.order.orderIdentifier,
+    orderCode: budget.order ? budget.order.orderIdentifier : undefined,
     tableCode: budget.tableCode,
     date: new Date().toLocaleDateString(),
     time: new Date().toLocaleTimeString()

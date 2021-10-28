@@ -33,7 +33,7 @@ export async function kitchenPizzas (
 
   return {
     budgetCode: budget.budgetCode.toString(),
-    orderCode: budget.order.orderIdentifier,
+    orderCode: budget.order ? budget.order.orderIdentifier : undefined,
     tableCode: budget.tableCode,
     pizzas: pizzasWithFollowUps,
     date: new Date().toLocaleDateString(),

@@ -12,7 +12,7 @@ export function kitchenProducts ({ budget, products: budgetProducts }: KitchenPr
 
   return {
     budgetCode: budget.budgetCode.toString(),
-    orderCode: budget.order.orderIdentifier,
+    orderCode: budget.order ? budget.order.orderIdentifier : undefined,
     tableCode: budget.tableCode,
     products,
     date: new Date().toLocaleDateString(),

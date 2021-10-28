@@ -11,7 +11,7 @@ export interface TableProps {
 
 export interface PrintOrder {
   budgetCode: string
-  orderCode: string
+  orderCode?: string
   products: PrintProductProps[]
   value: number
   table: TableProps

@@ -29,7 +29,7 @@ export interface PrintProductProps {
 
 export interface PrintKitchenOrBar {
   budgetCode: string
-  orderCode: string
+  orderCode?: string
   tableCode: number
   date: string
   time: string

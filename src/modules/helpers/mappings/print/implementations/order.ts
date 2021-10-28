@@ -21,7 +21,7 @@ export function order ({ budget, orderProgress }: OrderProps): PrintOrder {
 
   return {
     budgetCode: budget.budgetCode.toString(),
-    orderCode: budget.order.orderIdentifier,
+    orderCode: budget.order ? budget.order.orderIdentifier : undefined,
     products,
     table: getTableProps(orderProgress.orderDate, budget.tableCode),
     value: budget.value

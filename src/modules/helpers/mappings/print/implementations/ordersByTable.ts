@@ -26,7 +26,7 @@ export function ordersByTable (props: OrdersByTableProps): PrintOrderByTable {
     }
 
     budgetCodes.push(budgetCode.toString())
-    orderCodes.push(order.orderIdentifier)
+    orderCodes.push(order?.orderIdentifier)
 
     value += budgetValue
   }
