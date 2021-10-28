@@ -11,6 +11,8 @@ export class TableGet implements TableGetProtocols {
 
     const { closedTables, openedTables } = await instances.table.find().execute()
 
+    const { useOrder } = await instances.config.find().execute()
+
     for (const tableIndex in closedTables) {
       const { tableCode } = closedTables[tableIndex]
       const budgets = await instances.budget.find().byTable(tableCode)
@@ -18,7 +20,9 @@ export class TableGet implements TableGetProtocols {
       Object.assign(closedTables[tableIndex], { budgets })
     }
 
-    const tables = tableMapping().tables([...closedTables, ...openedTables])
+    const tables = useOrder
+      ? tableMapping().tables([...closedTables, ...openedTables])
+      : tableMapping().tablesWithBudgets([...closedTables, ...openedTables])
 
     return response.status(200).json({ results: tables })
   }
