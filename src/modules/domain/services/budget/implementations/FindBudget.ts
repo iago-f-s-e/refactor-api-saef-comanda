@@ -49,7 +49,7 @@ export class FindBudget implements FindBudgetProtocols {
     })
   }
 
-  public async byTable (tableCode: number, useOrder: boolean): Promise<Budget[]> {
+  public async byTable (tableCode: number, useOrder: boolean = true): Promise<Budget[]> {
     if (useOrder) {
       return this.filterOrders(await this.getBudgetsWithOrders(tableCode))
     }
