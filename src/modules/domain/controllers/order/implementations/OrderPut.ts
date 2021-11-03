@@ -46,7 +46,15 @@ export class OrderPut implements OrderPutProtocols {
         await instances.budgetProducts.create().execute(budgetProducts)
       }
 
-      await instances.budget.update().value({ budgetCode: budget.budgetCode, value: props.valor })
+      const { products } = await instances.budget.find().byCode(props.comanda.codigo)
+
+      let value = 0
+
+      products.forEach(product => {
+        value += product.quantity * product.price
+      })
+
+      await instances.budget.update().value({ budgetCode: budget.budgetCode, value })
       await instances.orderProgress.update().lastChange(budget.budgetCode)
       await transactions.commit()
 
