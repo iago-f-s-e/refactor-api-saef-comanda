@@ -8,15 +8,15 @@ module.exports = {
     encrypt: false
   },
   entities: [
-    'dist/modules/auth/entities/*.js',
-    'dist/modules/domain/entities/*.js',
-    'dist/modules/helpers/entities/*.js',
+    'src/modules/auth/entities/*.ts',
+    'src/modules/domain/entities/*.ts',
+    'src/modules/helpers/entities/*.ts',
   ],
   migrations: [
-    'dist/infra/database/migrations/**/*.js',
+    'src/infra/database/migrations/**/*.ts',
   ],
   cli: {
-    entitiesDir: 'dist/infra/database/entities',
-    migrationsDir: 'dist/infra/database/migrations'
+    entitiesDir: 'src/infra/database/entities',
+    migrationsDir: 'src/infra/database/migrations'
   }
 }
