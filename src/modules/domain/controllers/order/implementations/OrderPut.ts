@@ -23,12 +23,15 @@ export class OrderPut implements OrderPutProtocols {
 
     try {
       const budget = await instances.budget.find().byCode(props.comanda.codigo)
+      let budgetValue = 0
 
       let productIndex = this.getProductIndex(budget.products)
 
       if (props.pizzas) {
-        const { productIndex: index, pizzas, pizzaFollowUps } = pizzaMapping()
+        const { productIndex: index, pizzas, pizzaFollowUps, value: pizzasValue } = pizzaMapping()
           .createPizzasProps({ props: props.pizzas, budget, index: productIndex })
+
+        budgetValue += pizzasValue
 
         await instances.budgetProducts.create().execute(pizzas)
         await instances.pizzaFollowUp.create().execute(pizzaFollowUps)
@@ -37,16 +40,22 @@ export class OrderPut implements OrderPutProtocols {
       }
 
       if (props.produtos) {
-        const budgetProducts = budgerProductMapping().createBudgetProductsProps({
+        const { budgetProducts, value: productsValue } = budgerProductMapping().createBudgetProductsProps({
           budget,
           index: productIndex,
           props: props.produtos
         })
 
+        budgetValue += productsValue
+
         await instances.budgetProducts.create().execute(budgetProducts)
       }
 
-      await instances.budget.update().value({ budgetCode: budget.budgetCode, value: props.valor })
+      budget.products.forEach(product => {
+        budgetValue += product.quantity * product.value
+      })
+
+      await instances.budget.update().value({ budgetCode: budget.budgetCode, value: budgetValue })
       await instances.orderProgress.update().lastChange(budget.budgetCode)
       await transactions.commit()
 

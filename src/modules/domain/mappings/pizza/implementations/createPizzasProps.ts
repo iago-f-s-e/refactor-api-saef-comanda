@@ -7,19 +7,22 @@ export function createPizzasProps ({ budget, index, props }: PizzaMappingProps):
   const pizzaFollowUps: PizzaFollowUp[][] = []
 
   let productIndex = index
+  let productValue = 0
 
   for (const prop of props) {
-    const { pizza, pizzaFollowUp } = createPizzaProps({ ...prop, productIndex, budget })
+    const { pizza, pizzaFollowUp, value } = createPizzaProps({ ...prop, productIndex, budget })
 
     pizzas.push(pizza)
     pizzaFollowUps.push(pizzaFollowUp)
 
+    productValue += value
     productIndex++
   }
 
   return {
     pizzas,
     pizzaFollowUps,
-    productIndex
+    productIndex,
+    value: productValue
   }
 }

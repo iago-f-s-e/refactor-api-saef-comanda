@@ -52,7 +52,7 @@ export class OrderPost implements OrderPostProtocols {
       }
 
       if (props.produtos) {
-        const budgetProducts = budgerProductMapping().createBudgetProductsProps({
+        const { budgetProducts } = budgerProductMapping().createBudgetProductsProps({
           budget,
           index: productIndex,
           props: props.produtos

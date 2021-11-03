@@ -1,19 +1,21 @@
 import { BudgetProduct } from '@src/modules/domain/entities'
-import { BudgetProductsMappingProps } from '../contracts'
+import { BudgetProductsMappingProps, ResponseCreateBudgetProducts } from '../contracts'
 import { createBudgetProductProps } from './createBudgetProductProps'
 
-export function createBudgetProductsProps ({ budget, index, props }: BudgetProductsMappingProps): BudgetProduct[] {
-  const budgerProducts: BudgetProduct[] = []
+export function createBudgetProductsProps ({ budget, index, props }: BudgetProductsMappingProps): ResponseCreateBudgetProducts {
+  const budgetProducts: BudgetProduct[] = []
 
   let productIndex = index
+  let value: number = 0
 
   for (const prop of props) {
     const budgetProduct = createBudgetProductProps({ ...prop, budget, productIndex })
 
-    budgerProducts.push(budgetProduct)
+    budgetProducts.push(budgetProduct)
 
+    value += budgetProduct.quantity * budgetProduct.price
     productIndex++
   }
 
-  return budgerProducts
+  return { budgetProducts, value }
 }

@@ -11,7 +11,8 @@ export function createPizzaProps (props: MappedPizzaWithFollowUpProps): MappedPi
       pizza,
       followUps: props.acompanhamentos,
       productIndex: props.productIndex
-    })
+    }),
+    value: props.preço
   }
 }
 

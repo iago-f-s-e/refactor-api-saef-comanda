@@ -9,12 +9,14 @@ export interface MappedPizzaWithFollowUpProps extends RequestToCreatePizzaOrder 
 export interface MappedPizzaWithFollowUp {
   pizza: BudgetProduct
   pizzaFollowUp: PizzaFollowUp[]
+  value: number
 }
 
 export interface MappedPizzasWithFollowUp {
   pizzas: BudgetProduct[]
   pizzaFollowUps: PizzaFollowUp[][]
   productIndex: number
+  value: number
 }
 
 export interface PizzaMappingProps {
