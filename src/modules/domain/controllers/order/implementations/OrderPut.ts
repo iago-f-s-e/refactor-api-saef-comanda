@@ -51,7 +51,7 @@ export class OrderPut implements OrderPutProtocols {
       let value = 0
 
       products.forEach(product => {
-        value += product.quantity * product.price
+        value += product.quantity * product.value
       })
 
       await instances.budget.update().value({ budgetCode: budget.budgetCode, value })
