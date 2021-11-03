@@ -3,16 +3,23 @@ import { MappedOrder } from '@domain/controllers'
 import { productMapping } from '@domain/mappings'
 
 export function budget (entity: Budget): MappedOrder {
+  const products = productMapping().budgetProducts(entity.products)
+  let value = 0
+
+  products.forEach(product => {
+    value += product.valor
+  })
+
   return {
     codigo: entity.budgetCode,
     numero: entity.budgetCode,
     emissão: getEmission(entity.emission),
     status: getStatus(entity),
-    valor: entity.value,
+    valor: value,
     desconto: entity.discount,
     cliente: getClient(entity.client),
     garçom: getEmployee(entity.employeeCode),
-    produtos: productMapping().budgetProducts(entity.products)
+    produtos: products
   }
 }
 
